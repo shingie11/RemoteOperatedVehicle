@@ -6,7 +6,7 @@ To install the decoder do the following steps:
 
 3) cd build
 
-4) cmake -G "Unix Makefiles" ..
+4) cmake -G "Unix Makefiles" ..                  (Make sure you have cmake installed in your system)
 
 5) make
 
