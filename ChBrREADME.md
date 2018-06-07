@@ -1,6 +1,6 @@
 To install the decoder do the following steps:
 
-1) cd Channelwise-Barcode/MobileColorBarcodes/ExternalLibrariesNApplications/ZXingBarcodeDecoder/src/zxing-cpp-master/
+1) cd Channelwise-Barcode/ZXingBarcodeDecoder/src/zxing-cpp-master/
 
 2) mkdir build 
 
