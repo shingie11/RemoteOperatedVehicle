@@ -1,10 +1,10 @@
 %image=imread('25mmL.png');
-function Q=pilotblock_adaptivethresholding(imgname)
+function Q=pilotblock_adaptivethresholding(imgname,cname)
 pilot_image=imread(imgname);
 figure;imshow(pilot_image)
-minimage=min(pilot_image,[],3);
+%minimage=min(pilot_image,[],3);
 %[red,green,blue]=getRGBchannel(image);
-[Q,nyyy,red,green,blue,cyan,magenta,yellow]=getQmatrixPB(pilot_image);
+[Q,nyyy,red,green,blue,cyan,magenta,yellow]=getQmatrixPB(pilot_image,cname);
 %Q=getQmatrixPB(pilot_image);
 close all;
 imagecancel_beforebin=zeros(size(pilot_image,1),size(pilot_image,2),3);
@@ -13,17 +13,15 @@ for j=1:size(pilot_image,2)
 imagecancel_beforebin(i,j,:) = 255*inv(Q)*double(reshape(pilot_image(i,j,:),3,1));
 end
 end
-[xx,yy]=find(nyyy~=0);
-dummy1=imagecancel_beforebin(:,:,1);dummy2=imagecancel_beforebin(:,:,2);dummy3=imagecancel_beforebin(:,:,3);
-%figure;imshow(uint8(imagecancel_beforebin))
-for i=1:size(xx,1)
-dummy1(xx(i),yy(i))=minimage(xx(i),yy(i));
-dummy2(xx(i),yy(i))=minimage(xx(i),yy(i));
-dummy3(xx(i),yy(i))=minimage(xx(i),yy(i));
-end
-imagecancel_beforebin=cat(3,dummy1,dummy2,dummy3);
+
+
 %figure;imshow(uint8(imagecancel_beforebin))
 imagecancel_afterbin=zeros(size(imagecancel_beforebin));
+
+% imagecancel_afterbin(:,:,1)=imbinarize(uint8(imagecancel_beforebin(:,:,1)));
+% imagecancel_afterbin(:,:,2)=imbinarize(uint8(imagecancel_beforebin(:,:,2)));
+% imagecancel_afterbin(:,:,3)=imbinarize(uint8(imagecancel_beforebin(:,:,3)));
+
 for k=1:3
 threshold=binarization(pilot_image(:,:,k),k,red,green,blue,cyan,magenta,yellow);
 for i=1:size(imagecancel_beforebin,1)
@@ -35,6 +33,17 @@ end
 end
 end
 end
+
+[xx,yy]=find(nyyy~=0);
+dummy1=imagecancel_afterbin(:,:,1);dummy2=imagecancel_afterbin(:,:,2);dummy3=imagecancel_afterbin(:,:,3);
+%figure;imshow(uint8(imagecancel_beforebin))
+for i=1:size(xx,1)
+dummy1(xx(i),yy(i))=0;
+dummy2(xx(i),yy(i))=0;
+dummy3(xx(i),yy(i))=0;
+end
+imagecancel_afterbin=cat(3,dummy1,dummy2,dummy3);
+
 close all;
 %chl=1; figure(1); imshow(uint8(imagecancel_beforebin(:,:,chl))); figure(2); imshow(image(:,:,chl));figure(3); imshow(uint8(imagecancel_afterbin(:,:,chl)));
 %chl=2; figure(4); imshow(uint8(imagecancel_beforebin(:,:,chl))); figure(5); imshow(image(:,:,chl));figure(6); imshow(uint8(imagecancel_afterbin(:,:,chl)));

@@ -1,4 +1,4 @@
-To install the decoder do the following steps:
+A) To install the decoder do the following steps:
 
 1) cd Channelwise-Barcode/ZXingBarcodeDecoder/src/zxing-cpp-master/
 
@@ -18,3 +18,11 @@ to the build directory and run the command
 ./zxing test.png		
 
 This should result in "www.rochester.edu" message appear on the terminal and a file called "Decoderlogdata.txt" appear in the build directory.
+
+B) Code Explaination:
+
+1) pbatforcohqraz.m : The main file for implementing Pilot block and adaptive thresholding technique.
+
+2) pbotforcohqraz.m : The main file for implementing Pilot block and Otsu thresholding technique.
+
+3) locatebarcode.m : Code for locating the barcode which is embedded in an image (plain or natural).

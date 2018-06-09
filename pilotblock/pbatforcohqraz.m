@@ -1,4 +1,6 @@
 clear
+cname='qr';%If code is QR
+%cname='az';%If code is Aztec
 colors={'red';'green';'blue'}';
 pth='Outputfromdispcam/';
 sublist=folderSubFolders(pth,Inf);
@@ -30,9 +32,9 @@ for j=1:numel(newflist)
     for k=1:size(N,1)
         imgname=[currDir,'\',N{k}];%Linux change
         [~,name,~]=fileparts(imgname);
-        Q=pilotblock_adaptivethresholding(imgname);
+        Q=pilotblock_adaptivethresholding(imgname,cname);
         
-        strall=['zxing.exe ','1.png'];
+        strall=['zxing.exe --try-harder ','1.png'];
         [~,result]=system(strall,'-echo');
         if contains(result,'decoding failed')
             statmatrix(k,3)=NaN;
@@ -44,7 +46,7 @@ for j=1:numel(newflist)
             %movefile('Decoderlogdata.txt',[currDir,'\']);
             strenc=[encfpth,encfiles{3}];
             strdec='Decoderlogdata.txt';
-            %biterrorrate=getBER(strenc,strdec);
+            %biterrorrate=getBER(strenc,strdec); %Uncomment when running data from our dataset
             biterrorrate=0.9;%Temporary
             statmatrix(k,1)=biterrorrate;
             statmatrix(k,2)=1;
@@ -56,7 +58,7 @@ for j=1:numel(newflist)
             statmatrix(k,2)=NaN;
         end
         
-        strall=['zxing.exe ','2.png'];
+        strall=['zxing.exe --try-harder ','2.png'];
         [~,result]=system(strall,'-echo');
         if contains(result,'decoding failed')
             statmatrix(k,6)=NaN;
@@ -68,7 +70,7 @@ for j=1:numel(newflist)
             %movefile(str,[pth,decf,'/']);
             strenc=[encfpth,encfiles{1}];
             strdec='Decoderlogdata.txt';
-            %biterrorrate=getBER(strenc,strdec);
+            %biterrorrate=getBER(strenc,strdec);%Uncomment when running data from our dataset
             biterrorrate=0.9;%Temporary
             statmatrix(k,4)=biterrorrate;
             statmatrix(k,5)=1;
@@ -80,7 +82,7 @@ for j=1:numel(newflist)
             statmatrix(k,5)=NaN;
         end
  
-        strall=['zxing.exe ','3.png'];
+        strall=['zxing.exe --try-harder ','3.png'];
         [~,result]=system(strall,'-echo');
         if contains(result,'decoding failed')
             statmatrix(k,9)=NaN;
@@ -92,7 +94,7 @@ for j=1:numel(newflist)
             %movefile(str,[pth,decf,'/']);
             strenc=[encfpth,encfiles{2}];
             strdec='Decoderlogdata.txt';
-            %biterrorrate=getBER(strenc,strdec);
+            %biterrorrate=getBER(strenc,strdec);%Uncomment when running data from our dataset
             biterrorrate=0.9;%Temporary
             statmatrix(k,7)=biterrorrate;
             statmatrix(k,8)=1;
@@ -125,7 +127,7 @@ for j=1:numel(newflist)
         movefile('5.png',decnimgname);
         movefile(decnimgname,[pth2decimgs,'\']);
         
-        decnimgname=[name,'6',colors{1},'.png'];
+        decnimgname=[name,'6',colors{3},'.png'];
         movefile('6.png',decnimgname);
         movefile(decnimgname,[pth2decimgs,'\']);
         
@@ -133,11 +135,11 @@ for j=1:numel(newflist)
         movefile('7.png',decnimgname);
         movefile(decnimgname,[pth2decimgs,'\']);
         
-        decnimgname=[name,'8',colors{1},'.png'];
+        decnimgname=[name,'8',colors{2},'.png'];
         movefile('8.png',decnimgname);
         movefile(decnimgname,[pth2decimgs,'\']);
         
-        decnimgname=[name,'9',colors{1},'.png'];
+        decnimgname=[name,'9',colors{3},'.png'];
         movefile('9.png',decnimgname);
         movefile(decnimgname,[pth2decimgs,'\']);
     end
