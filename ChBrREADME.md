@@ -31,7 +31,7 @@ B) Code Explaination:
 	
 	a) emotforincohqraz.m : The main file implementing EM algorithm with Otsu thresholding technique.
 	
-3) commonfunctions: Folder contains the general function used in the code.
+3) commonfunctions: Folder contains some of the general function used in above code.
 	
 	a) locatebarcode.m : Code for locating the barcode which is embedded in an image (plain or natural). The code also uses files which are
 						 present in "Localize" folder. Few example images are present in "locatebarcodeimage" folder.
