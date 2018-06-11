@@ -21,8 +21,22 @@ This should result in "www.rochester.edu" message appear on the terminal and a f
 
 B) Code Explaination:
 
-1) pbatforcohqraz.m : The main file for implementing Pilot block and adaptive thresholding technique.
+1) PB : Folder contains the code for implementing pilotblock technique for interference cancellation in QR and Aztec codes.
 
-2) pbotforcohqraz.m : The main file for implementing Pilot block and Otsu thresholding technique.
+	a) pbatforcohqraz.m : The main file for implementing Pilot block and adaptive thresholding technique.
 
-3) locatebarcode.m : Code for locating the barcode which is embedded in an image (plain or natural).
+	b) pbotforcohqraz.m : The main file for implementing Pilot block and Otsu thresholding technique.
+
+2) EM :	Folder contains the code for implementing EM technique for interference cancellation in QR and Aztec codes.
+	
+	a) emotforincohqraz.m : The main file implementing EM algorithm with Otsu thresholding technique.
+	
+3) commonfunctions: Folder contains the general function used in the code.
+	
+	a) locatebarcode.m : Code for locating the barcode which is embedded in an image (plain or natural). The code also uses files which are
+						 present in "Localize" folder. Few example images are present in "locatebarcodeimage" folder.
+
+
+	
+	
+	
