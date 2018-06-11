@@ -1,5 +1,5 @@
 clear
-addpath(genpath('../commonfunctions'))
+addpath(genpath('../commonfunctions/'))
 colors={'red';'green';'blue'}';
 pth='Outputfromdispcam/';
 sublist=folderSubFolders(pth,Inf);

@@ -1,5 +1,5 @@
 clear
-addpath(genpath('../commonfunctions'))
+addpath(genpath('../commonfunctions/'))
 cname='qr';%If code is QR
 %cname='az';%If code is Aztec
 colors={'red';'green';'blue'}';
